@@ -2,8 +2,7 @@ cask "macshield" do
   version "1.1.0"
   sha256 "f96d560705d43f041872617b6145c8b4c9482b118eb5d9a4d4ff1190a293a1c7"
 
-  url "https://github.com/AryanVBW/MacShield/releases/download/v#{version}/MacShield.dmg",
-      verified: "github.com/AryanVBW/MacShield/"
+  url "https://github.com/AryanVBW/MacShield/releases/download/v#{version}/MacShield.dmg"
   name "MacShield"
   desc "Lock apps with Touch ID, Apple Watch, or a password"
   homepage "https://github.com/AryanVBW/MacShield"
