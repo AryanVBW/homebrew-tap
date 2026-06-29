@@ -17,6 +17,18 @@ cask "macshield" do
 
   app "MacShieldPRO.app"
 
+  # MacShield ships without an Apple Developer ID / notarization, so macOS would
+  # quarantine the download and Gatekeeper would block first launch ("damaged" or
+  # "unidentified developer"). Ad-hoc sign the installed bundle and clear the
+  # quarantine flag so the app launches normally after `brew install`.
+  postflight do
+    app_path = "#{appdir}/MacShieldPRO.app"
+    system_command "/usr/bin/codesign",
+                   args: ["--force", "--deep", "--sign", "-", app_path]
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", app_path]
+  end
+
   uninstall launchctl: "com.macshield.keepalive",
             quit:      "com.macshield.app"
 
